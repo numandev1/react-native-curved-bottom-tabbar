@@ -1,26 +1,26 @@
-# react-native-reanimated-curve-tab-bar
+# react-native-reanimated-curved-tab-bar
 
 ### react-native-reanimated, react-native-gesture-handler ARE peerDependencies 
 
 ## Getting started
 
-`$ npm install reanimated-curve-tabs-bar --save`
+`$ npm install reanimated-curved-tabs-bar --save`
 
 or
 
-`$ yarn add reanimated-curve-tabs-bar`
+`$ yarn add reanimated-curved-tabs-bar`
 
 
 ### Mostly automatic installation
 
-`$ react-native link reanimated-curve-tabs-bar`
+`$ react-native link reanimated-curved-tabs-bar`
 
 ## Usage
 ```javascript
-import ReanimatedCurveTabBar from 'reanimated-curve-tabs-bar';
+import ReanimatedCurvedTabBar from 'reanimated-curved-tabs-bar';
 
 // TODO: 
-                <ReanimatedCurveTabBar
+                <ReanimatedCurvedTabBar
                     duration={250}
                     height={220}
                     topGap={15}
