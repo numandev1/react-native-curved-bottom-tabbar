@@ -4,20 +4,20 @@
 
 ## Getting started
 
-`$ npm install react-native-reanimated-curve-tab-bar --save`
+`$ npm install reanimated-curve-tabs-bar --save`
 
 or
 
-`$ yarn add react-native-reanimated-curve-tab-bar`
+`$ yarn add reanimated-curve-tabs-bar`
 
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-reanimated-curve-tab-bar`
+`$ react-native link reanimated-curve-tabs-bar`
 
 ## Usage
 ```javascript
-import ReanimatedCurveTabBar from 'react-native-reanimated-curve-tab-bar';
+import ReanimatedCurveTabBar from 'reanimated-curve-tabs-bar';
 
 // TODO: 
                 <Mnav
