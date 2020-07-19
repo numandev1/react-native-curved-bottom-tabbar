@@ -16,7 +16,9 @@
   },
   "repository": "git+https://github.com/reuvenaor/react-native-reanimated-curve-tab-bar.git",
   "keywords": [
-    "react-native"
+    "react-native",
+    "react-native-reanimated",
+    "react-native-gesture-handler"
   ],
   "author": "Reuven Naor <reuvenaor85@gmail.com>",
   "license": "MIT",
