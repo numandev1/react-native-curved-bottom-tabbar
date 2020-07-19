@@ -1,9 +1,3 @@
-// import { NativeModules } from 'react-native';
-
-// const { ReanimatedCurveTabBar } = NativeModules;
-
-// export default ReanimatedCurveTabBar;
-
 import React, { useRef } from 'react';
 import { StyleSheet, View, Dimensions, I18nManager } from 'react-native';
 I18nManager.allowRTL(false);

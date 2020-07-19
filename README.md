@@ -20,7 +20,7 @@ or
 import ReanimatedCurveTabBar from 'reanimated-curve-tabs-bar';
 
 // TODO: 
-                <Mnav
+                <ReanimatedCurveTabBar
                     duration={250}
                     height={220}
                     topGap={15}
