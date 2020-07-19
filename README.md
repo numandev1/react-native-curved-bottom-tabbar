@@ -1,5 +1,7 @@
 # react-native-reanimated-curve-tab-bar
 
+### react-native-reanimated, react-native-gesture-handler ARE peerDependencies 
+
 ## Getting started
 
 `$ npm install react-native-reanimated-curve-tab-bar --save`
