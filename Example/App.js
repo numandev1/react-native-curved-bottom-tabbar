@@ -1,8 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, Dimensions } from 'react-native'
-// import ReanimatedCurveTabBar from 'reanimated-curved-tabs-bar';
-import ReanimatedCurveTabBar from './mnav';
+import ReanimatedCurveTabBar from 'reanimated-curved-tabs-bar';
 const { height, width } = Dimensions.get('window');
 
 ARRAY_LENGTH = 5;
