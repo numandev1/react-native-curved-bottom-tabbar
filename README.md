@@ -3,6 +3,10 @@
 ### react-native-reanimated, react-native-gesture-handler ARE peerDependencies 
 ### 
 
+Built with [react-native-gesture-handler](https://github.com/kmagiera/react-native-gesture-handler) and [react-native-reanimated](https://github.com/kmagiera/react-native-reanimated).
+
+Fully native 60 FPS animations.
+
 ## Getting started
 
 `$ npm install reanimated-curved-tabs-bar --save`
