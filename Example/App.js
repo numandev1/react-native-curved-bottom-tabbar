@@ -1,57 +1,78 @@
 import 'react-native-gesture-handler';
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Text, StyleSheet, View, Dimensions } from 'react-native'
-import ReanimatedCurveTabBar from 'reanimated-curved-tabs-bar';
-
+// import ReanimatedCurveTabBar from 'reanimated-curved-tabs-bar';
+import ReanimatedCurveTabBar from './mnav';
 const { height, width } = Dimensions.get('window');
 
+ARRAY_LENGTH = 5;
 
-export default class NavBar extends PureComponent {
+export default class NavBar extends Component {
 
   render() {
     return (
       <View style={styles.con}>
         <ReanimatedCurveTabBar
-          duration={250}
-          height={220}
-          topGap={15}
-          marginBottom={23}  // circle marginBottom:   1.7-1.8 (distance from ground)
 
-          scaleYCircle={1.4}   // glich anime in the bottom of picked: 0.7- 1.4 
+          // Nav bar height  
+          // ** Required
+          height={230}
 
-          translateY={-5}    // circle translateY: - => top ; + => bottom
-          lockTranslateYAnime={true}
+          // Array of components (icons) []
+          // ** Required
+          iconsArray={[...Array(ARRAY_LENGTH)].map((item, index) =>
+            (<View style={styles.icon}>
+              <Text>{index + 1}</Text>
+            </View>)
+          )}
 
-          scale={1.4}         // circle scale anime 
-          lockScaleAnime={true}
-
+          // Return icon number
+          // ** Required
           onPress={(btnNum) => console.log(btnNum)}
 
-          tabColor={'white'}  // circle scale anime 
-          backgroundColor={'#1166dd'}
+          // Top Gap height 
+          // (default 15) 
+          topGap={15}
 
-          sidesRadius={1} // multipling the default sides radius 0.1 - 1
+          tabColor={'white'}
+          backgroundColor={'firebrick'}
 
-          iconsArray={[
-            <View style={styles.icon}>
-              <Text>{1}</Text>
-            </View>,
-            <View style={styles.icon}>
-              <Text>{2}</Text>
-            </View>,
-            <View style={styles.icon}>
-              <Text>{3}</Text>
-            </View>,
-            <View style={styles.icon}>
-              <Text>{4}</Text>
-            </View>,
-            <View style={styles.icon}>
-              <Text>{5}</Text>
-            </View>,
-            <View style={styles.icon}>
-              <Text>{6}</Text>
-            </View>,
-          ]}
+          // Animation duration
+          // (default 300) 
+          duration={300}
+
+
+          // multipling the default sides radius 0.1 - 1
+          // (default 1)
+          sidesRadius={1}
+
+          // Icons marginBottom (distance from ground). 
+          // recommended values depends on component height
+          // (default 23)
+          marginBottom={23}
+
+          // Glich animation in the bottom of picked icon. 
+          // Recommended values: 0.7 - 1.4 
+          // (default 1.4)
+          scaleYCircle={1.4}
+
+          // Icon translateY. - => top ; + => bottom
+          // (default -10)
+          iconTranslateY={-5}
+          lockTranslateYAnime={true}
+
+          // icon scale animation
+          // (default 1.4)
+          iconScale={1.4}
+          lockScaleAnime={true}
+
+          // icons drop down animation
+          // (default 30)
+          iconDropY={30}
+          allowDropAnime={true}
+          // first icon will also drop down
+          dropWithFirst={false}
+
         />
       </View>
     )
@@ -68,7 +89,6 @@ const styles = StyleSheet.create({
     height: height,
   },
   icon: {
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#eee',
