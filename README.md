@@ -7,6 +7,9 @@ Built with [react-native-gesture-handler](https://github.com/kmagiera/react-nati
 
 Fully native 60 FPS animations.
 
+![](gifs/five.gif)  |
+:---------------:|
+
 ## Getting started
 
 `$ npm install reanimated-curved-tabs-bar --save`
