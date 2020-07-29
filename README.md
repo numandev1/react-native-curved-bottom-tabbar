@@ -37,8 +37,9 @@ import ReanimatedCurvedTabBar from 'reanimated-curved-tabs-bar';
           )}
 
           // Return icon number
-          // ** Required
           onPress={(btnNum) => console.log(btnNum)}
+
+          allowDropAnime={true}
 
         />
       </View>
@@ -60,7 +61,6 @@ import ReanimatedCurvedTabBar from 'reanimated-curved-tabs-bar';
             </View>)
           )}
 
-          // ** Required
           onPress={(btnNum) => console.log(btnNum)}
 
           // Array of Screens
@@ -70,8 +70,41 @@ import ReanimatedCurvedTabBar from 'reanimated-curved-tabs-bar';
             </View>)
           )}
 
+          allowDropAnime={true}
+
         />
       </View>
+```
+
+## 
+## As react-navigation/bottom-tabs's "tabBar"  
+```javascript
+
+      <NavigationContainer>
+        <Tab.Navigator
+          tabBar={props =>
+            <ReanimatedCurveTabBar
+              // ** Required
+              {...props}
+              // ** Required  
+              reactNaviagtionBar={true}
+              // ** Required  
+              height={200}
+              // ** Required  
+              iconsArray={[...Array(ARRAY_LENGTH)].map((item, index) =>
+                (<View style={styles.icon}>
+                  <Text>{index + 1}</Text>
+                </View>)
+              )}
+            allowDropAnime={true}
+            />}
+        >
+        // Your Screens Here 
+        // ** Screens name property must be 1 - screens / iconsArray length
+        // ** Screens number equal to iconsArray length
+        // For more info look in Example
+        </Tab.Navigator>
+      </NavigationContainer>
 ```
 
 ## 
@@ -123,8 +156,9 @@ import ReanimatedCurvedTabBar from 'reanimated-curved-tabs-bar';
 | ------------------------- | -------- | ------- | ------------|------|
 | height                    | yes      |    15   | Nav bar height  | Number |
 | iconsArray                | yes      |    0    | [<Component1>, ...<Component7>] // MAX iS 7! | Array |
-| screensArray              | no       |    null | [<Component1>, ...<Component7>] // MAX iS 7! | Array |
-| onPress                   | yes      |         | Return the number of the pressed icon (1-7) | Method |
+| screensArray              | no       |    0    | [<Component1>, ...<Component7>] // MAX iS 7! | Array |
+| onPress                   | no       |         | Return the number of the pressed icon (1-7) | Method |
+| reactNaviagtionBar        | no       |         | Use as react-navigation/bottom-tabs's "tabBar" property | Boolean |
 | topGap                    | no       |    0    | Top Gap height | Number |
 | tabColor                  | no       |    'white'    | Tabs color | Color |
 | backgroundColor           | no       |    'dodgerblue'    | Background color | Color |

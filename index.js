@@ -254,7 +254,12 @@ const CurvedTabBar = (props) => {
 
 
   const onPress = (btnBum) => {
-    props.onPress(btnBum[0]);
+    if (props.reactNaviagtionBar && props.navigation?.navigate) {
+      props.navigation.navigate(btnBum[0] + '');
+    }
+    if (props.onPress) {
+      props.onPress(btnBum[0]);
+    }
   }
 
   const onHandlerStateChange = ({ nativeEvent }) => {
