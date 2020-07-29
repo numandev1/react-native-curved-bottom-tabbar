@@ -1,10 +1,11 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, Dimensions } from 'react-native'
+import { Text, StyleSheet, View, Dimensions, StatusBar } from 'react-native'
 import ReanimatedCurveTabBar from 'reanimated-curved-tabs-bar';
 const { height, width } = Dimensions.get('window');
+StatusBar.setHidden(true)
 
-ARRAY_LENGTH = 5;
+ARRAY_LENGTH = 7;
 
 export default class NavBar extends Component {
 
@@ -15,7 +16,7 @@ export default class NavBar extends Component {
 
           // Nav bar height  
           // ** Required
-          height={230}
+          height={200}
 
           // Array of components (icons) []
           // ** Required
@@ -25,6 +26,15 @@ export default class NavBar extends Component {
             </View>)
           )}
 
+          // Array of components
+          screensArray={[...Array(ARRAY_LENGTH)].map((item, index) =>
+            (<View style={{width, height, backgroundColor: 'eee', alignItems: 'center', justifyContent: 'center'}}>
+              <Text>{index+1}</Text>
+            </View>)
+          )}
+
+          screensBackground={'#eee'}
+
           // Return icon number
           // ** Required
           onPress={(btnNum) => console.log(btnNum)}
@@ -33,12 +43,12 @@ export default class NavBar extends Component {
           // (default 15) 
           topGap={15}
 
-          tabColor={'white'}
-          backgroundColor={'firebrick'}
+          tabColor={'tomato'}
+          backgroundColor={'slateblue'}
 
           // Animation duration
           // (default 300) 
-          duration={300}
+          duration={500}
 
 
           // multipling the default sides radius 0.1 - 1
@@ -86,6 +96,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: width,
     height: height,
+    backgroundColor: 'black'
   },
   icon: {
     alignItems: 'center',

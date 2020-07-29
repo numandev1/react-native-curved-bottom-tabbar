@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { StyleSheet, View, Dimensions, I18nManager } from 'react-native';
 I18nManager.allowRTL(false);
-import Animated, { Easing, useCode, greaterThan, lessOrEq } from 'react-native-reanimated';
+import Animated, { Easing, useCode, greaterThan, lessOrEq, } from 'react-native-reanimated';
 import { TapGestureHandler, State } from 'react-native-gesture-handler';
 
 const {
@@ -18,6 +18,7 @@ const {
   onChange,
   and,
   or,
+  multiply,
   sub,
   add,
   call,
@@ -27,7 +28,7 @@ const {
   lessThan,
 } = Animated;
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 function runTiming(clock, value, dest, animeDuration) {
   const state = {
@@ -88,7 +89,7 @@ const CurvedTabBar = (props) => {
   const pressedBtn = useRef(new Value(0)).current;
   const prevPressedBtn = useRef(new Value(0)).current;
   const normal = useRef(new Value(1)).current;
-  // const zero = useRef(new Value(0)).current;
+  const zero = useRef(new Value(0)).current;
   // const normalRadian = useValue(Math.PI * 2);
   const stateVal = useRef(new Value(0)).current;
   const xVal = useRef(new Value(0)).current;
@@ -200,6 +201,11 @@ const CurvedTabBar = (props) => {
     outputRange: [0, 1]
   });
 
+  const iconOpacityOut = interpolate(timingX, {
+    inputRange: [State.BEGAN, State.END],
+    outputRange: [1, 0]
+  });
+
   const iconOpacityIn = interpolate(timingX, {
     inputRange: [State.BEGAN, State.ACTIVE, State.END],
     outputRange: [1, 0, 1]
@@ -220,6 +226,16 @@ const CurvedTabBar = (props) => {
       inputRange: [State.BEGAN, State.ACTIVE, State.END],
       outputRange: [1, iconTranslateY, 1]
     });
+
+  const heightAnime = interpolate(timingX, {
+    inputRange: [State.BEGAN, State.END],
+    outputRange: [0, height - blockHeight]
+  })
+
+  const heightAnimeOut = interpolate(timingX, {
+    inputRange: [State.BEGAN, State.END],
+    outputRange: [height, 0]
+  })
 
   // const rotate = interpolate(timingX, {
   //     inputRange: [State.BEGAN, State.END],
@@ -249,121 +265,145 @@ const CurvedTabBar = (props) => {
 
   return (
     <>
-      <View style={[styles.container, { height: sizeh, bottom: -rad * marginBottomVal, backgroundColor: tabColor, }, props.containerStyle]}>
-        <View style={[styles.top, { bottom: sizeh - circleRad, height: circleRad + topGap, backgroundColor }]} />
+      <View style={{ backgroundColor: props.screensBackground, position: 'absolute', width, height }} />
+      {props.screensArray && props.screensArray.map((item, index) => {
+        return (
+          <Animated.View key={index} style={{
+            width,
+            height: height - sizeh,
+            backgroundColor: props.screensBackground,
+            position: 'absolute',
+            opacity:
+              cond(eq(index, pressedBtn),
+                iconOpacityIn,
+                zero,
+              ),
 
-        <Animated.View style={[styles.block, {
-          backgroundColor: tabColor,
-          height: blockHeight,
-          translateX,
-          borderTopLeftRadius: blockHeight * sidesRadius,
-          borderTopRightRadius: blockHeight * sidesRadius,
-        }]}>
-        </Animated.View>
+            // cond(
+            // eq(index, pressedBtn),
+            //  heightAnime,
+            //  zero
+            // ),
+          }}>
+      {item}
+    </Animated.View>
+  )
+})}
+<View style={[styles.container, { height: sizeh, bottom: -rad * marginBottomVal, backgroundColor: tabColor, }, props.containerStyle]}>
+  <View style={[styles.top, { bottom: sizeh - circleRad, height: circleRad + topGap, backgroundColor }]} />
 
-        <Animated.View style={[styles.circle, {
-          backgroundColor,
-          height: rad,
-          width: rad,
-          translateX,
-          borderRadius: circleRad,
-          // borderRadius: borderRadiusCircle,
-          transform: [{ scaleY: scaleYCircle }],
-          // width: borderRadiusBlock,
-        }]}>
+  <Animated.View style={[styles.block, {
+    backgroundColor: tabColor,
+    height: blockHeight,
+    translateX,
+    borderTopLeftRadius: blockHeight * sidesRadius,
+    borderTopRightRadius: blockHeight * sidesRadius,
+  }]}>
+  </Animated.View>
 
-        </Animated.View>
-        <Animated.View style={[styles.block, {
-          backgroundColor: tabColor,
-          height: blockHeight,
-          translateX,
-          borderTopLeftRadius: blockHeight * sidesRadius,
-          borderTopRightRadius: blockHeight * sidesRadius,
-        }]}>
+  <Animated.View style={[styles.circle, {
+    backgroundColor,
+    height: rad,
+    width: rad,
+    translateX,
+    borderRadius: circleRad,
+    // borderRadius: borderRadiusCircle,
+    transform: [{ scaleY: scaleYCircle }],
+    // width: borderRadiusBlock,
+  }]}>
 
-        </Animated.View>
-      </View>
-      <TapGestureHandler
-        onHandlerStateChange={onHandlerStateChange}
-      >
-        <Animated.View style={[styles.btnsWrap, { height: rad }]}>
-          {props.iconsArray.map((item, index) => {
-            return (
-              <Animated.View key={index} style={[styles.btnIconWrap, {
-                width: btnWidth,
-                transform: [{
-                  scale:
-                    cond(neq(index, pressedBtn),
-                      neq(iconScale, 0),
-                      scale,
-                      normal,
-                    ),
-                  translateY:
-                    cond(neq(index, pressedBtn),
-                      neq(iconTranslateY, 0),
-                      translateY,
-                      normal,
-                    ),
-                  // rotate:
-                  //     cond(neq(index, pressedBtn),
-                  //         neq(props.rotate, 0),
-                  //         rotate,
-                  //         normalRadian,
-                  //         normalRadian,
-                  //     ),
-                }]
-              }]}>
-                <Animated.View style={[styles.icon, {
-                  width: cond(neq(index, pressedBtn),
-                    btnWidth / 2,
-                    iconSize,
-                  ),
-                  height: cond(neq(index, pressedBtn),
-                    btnWidth / 2,
-                    iconSize,
-                  ),
-                  opacity: cond(neq(index, pressedBtn),
-                    1, //iconOpacityIn,
-                    iconOpacity,
-                    // lessThan(index, pressedBtn),
-                    // iconOpacity,
-                    // iconOpacityIn,
-                  ),
-                  translateY:
-                    cond(
-                      and(neq(index, pressedBtn),
-                        eq(props.allowDropAnime, 1),
-                        or(
-                          and(
-                            lessThan(sub(index, prevPressedBtn), sub(pressedBtn, prevPressedBtn)),
-                            cond(eq(props.dropWithFirst, 1),
-                              lessOrEq(prevPressedBtn, index),
-                              lessThan(prevPressedBtn, index),
-                            )
-                          ),
-                          and(
-                            greaterThan(sub(index, prevPressedBtn), sub(pressedBtn, prevPressedBtn)),
-                            cond(eq(props.dropWithFirst, 1),
-                              greaterOrEq(prevPressedBtn, index),
-                              greaterThan(prevPressedBtn, index),
-                            )
-                          )
-                        ),
+  </Animated.View>
+  <Animated.View style={[styles.block, {
+    backgroundColor: tabColor,
+    height: blockHeight,
+    translateX,
+    borderTopLeftRadius: blockHeight * sidesRadius,
+    borderTopRightRadius: blockHeight * sidesRadius,
+  }]}>
+
+  </Animated.View>
+</View>
+  <TapGestureHandler
+    onHandlerStateChange={onHandlerStateChange}
+  >
+    <Animated.View style={[styles.btnsWrap, { height: rad }]}>
+      {props.iconsArray.map((item, index) => {
+        return (
+          <Animated.View key={index} style={[styles.btnIconWrap, {
+            width: btnWidth,
+            transform: [{
+              scale:
+                cond(neq(index, pressedBtn),
+                  neq(iconScale, 0),
+                  scale,
+                  normal,
+                ),
+              translateY:
+                cond(neq(index, pressedBtn),
+                  neq(iconTranslateY, 0),
+                  translateY,
+                  normal,
+                ),
+              // rotate:
+              //     cond(neq(index, pressedBtn),
+              //         neq(props.rotate, 0),
+              //         rotate,
+              //         normalRadian,
+              //         normalRadian,
+              //     ),
+            }]
+          }]}>
+            <Animated.View style={[styles.icon, {
+              width: cond(neq(index, pressedBtn),
+                btnWidth / 2,
+                iconSize,
+              ),
+              height: cond(neq(index, pressedBtn),
+                btnWidth / 2,
+                iconSize,
+              ),
+              opacity: cond(neq(index, pressedBtn),
+                1, //iconOpacityIn,
+                iconOpacity,
+                // lessThan(index, pressedBtn),
+                // iconOpacity,
+                // iconOpacityIn,
+              ),
+              translateY:
+                cond(
+                  and(neq(index, pressedBtn),
+                    eq(props.allowDropAnime, 1),
+                    or(
+                      and(
+                        lessThan(sub(index, prevPressedBtn), sub(pressedBtn, prevPressedBtn)),
+                        cond(eq(props.dropWithFirst, 1),
+                          lessOrEq(prevPressedBtn, index),
+                          lessThan(prevPressedBtn, index),
+                        )
                       ),
-                      translateYIn,
-                      1
+                      and(
+                        greaterThan(sub(index, prevPressedBtn), sub(pressedBtn, prevPressedBtn)),
+                        cond(eq(props.dropWithFirst, 1),
+                          greaterOrEq(prevPressedBtn, index),
+                          greaterThan(prevPressedBtn, index),
+                        )
+                      )
                     ),
-                  borderRadius: btnWidth,
-                  backgroundColor: tabColor,
-                }]} >
-                  {item}
-                </Animated.View>
+                  ),
+                  translateYIn,
+                  1
+                ),
+              borderRadius: btnWidth,
+              backgroundColor: tabColor,
+            }]} >
+              {item}
+            </Animated.View>
 
-              </Animated.View>
-            )
-          })}
-        </Animated.View>
-      </TapGestureHandler>
+          </Animated.View>
+        )
+      })}
+    </Animated.View>
+  </TapGestureHandler>
     </>
   )
 }

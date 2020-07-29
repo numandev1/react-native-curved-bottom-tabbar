@@ -1213,9 +1213,9 @@
   integrity sha512-7+2BITlgjgDhH0vvwZU/HZJVyk+2XUlvxXe8dFMedNX/aMkaOq++rMAFXc0tM7ij15QaWlbdQASBR9dihi+bDQ==
 
 "@types/node@*":
-  version "14.0.23"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.23.tgz#676fa0883450ed9da0bb24156213636290892806"
-  integrity sha512-Z4U8yDAl5TFkmYsZdFPdjeMa57NOvnaf1tljHzhouaPEp7LCj2JKkejpI1ODviIAQuW4CcQmxkQ77rnLsOOoKw==
+  version "14.0.24"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.24.tgz#b0f86f58564fa02a28b68f8b55d4cdec42e3b9d6"
+  integrity sha512-btt/oNOiDWcSuI721MdL8VQGnjsKjlTMdrKyTcLCKeQp/n4AAMFJ961wMbp+09y8WuGPClDEv07RIItdXKIXAA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -2387,9 +2387,9 @@ end-of-stream@^1.1.0:
     once "^1.4.0"
 
 envinfo@^7.1.0:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-7.5.1.tgz#93c26897225a00457c75e734d354ea9106a72236"
-  integrity sha512-hQBkDf2iO4Nv0CNHpCuSBeaSrveU6nThVxFGTrq/eDlV716UQk09zChaJae4mZRsos1x4YLY2TaH3LHUae3ZmQ==
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-7.7.0.tgz#fbfa46d739dec0554ef40220cd91fb20f64c9698"
+  integrity sha512-XX0+kACx7HcIFhar/JjsDtDIVcC8hnzQO1Asehq+abs+v9MtzpUuujFb6eBTT4lF9j2Bh6d2XFngbFRryjUAeQ==
 
 error-ex@^1.3.1:
   version "1.3.2"
@@ -5553,9 +5553,9 @@ realpath-native@^2.0.0:
   integrity sha512-v1SEYUOXXdbBZK8ZuNgO4TBjamPsiSgcFr0aP+tEKpQZK8vooEUqV6nm6Cv502mX4NF2EfsnVqtNAHG+/6Ur1Q==
 
 reanimated-curved-tabs-bar@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/reanimated-curved-tabs-bar/-/reanimated-curved-tabs-bar-1.0.5.tgz#e9c48fe7eace83ab779b09f1ea090ea847b3142e"
-  integrity sha512-1DyVyosQDqYS5ZqQRDutdkbPhAYZ8yEhhPwaEbH78qIFf+hKQuF1H6N2HM2Ta/zwidPkZuZj4g1ct9eb3NfuuA==
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/reanimated-curved-tabs-bar/-/reanimated-curved-tabs-bar-1.0.6.tgz#3e5cea2420df00b94030c82efb2672e43ca4e28b"
+  integrity sha512-y6qUVAM54DDJ3B5s968Rv6hRXPqxDDIsmWLGRfeo5TUn9bK9G1w+gKk0kqj6DUZK1ohykXi23ra7LU5+GQmQDQ==
 
 regenerate-unicode-properties@^8.2.0:
   version "8.2.0"
