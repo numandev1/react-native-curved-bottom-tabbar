@@ -1,7 +1,7 @@
 {
   "name": "reanimated-curved-tabs-bar",
   "title": "React Native Reanimated Curve Tab Bar",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "React Native Reanimated Curve Tab Bar",
   "main": "index.js",
   "files": [
