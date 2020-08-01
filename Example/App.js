@@ -1,152 +1,94 @@
-import 'react-native-gesture-handler';
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, Dimensions, StatusBar } from 'react-native'
-import ReanimatedCurveTabBar from 'reanimated-curved-tabs-bar';
-const { height, width } = Dimensions.get('window');
-StatusBar.setHidden(true)
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import { enableScreens } from 'react-native-screens';
+enableScreens();
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
 
-const Tab = createBottomTabNavigator();
+import BottomTabScreen from './src/bottomTab/bottomTabScreen';
+import WithScreensScreen from './src/swithScreens/withScreensScreen';
+import OneModeScreen from './src/oneMode/oneModeScreen';
 
-const ARRAY_LENGTH = 7;
 
-const Screens = [...Array(ARRAY_LENGTH)].map((item, index) =>
-  (props) =>
-    <View style={{ width, height, backgroundColor: 'eee', alignItems: 'center', justifyContent: 'center' }}>
-      <Text>{(index + 1) + ''}</Text>
-    </View>
-)
+const SCREENS = {
+  BottomTabScreen: { title: 'As React Navigation Bottom bar' },
+  WithScreensScreen: { title: 'With screens components' },
+  OneModeScreen: {title: 'As One Tab view'}
+};
 
-const reactNaviagtionBar = true;
-
-export default class NavBar extends Component {
+class MainScreen extends React.Component {
+  static navigationOptions = {
+    title: '👵 Reanimated 1.x Examples',
+  };
 
   render() {
-    if (reactNaviagtionBar) {
-      return (
-        <NavigationContainer>
-          <Tab.Navigator
-            tabBar={props =>
-              <ReanimatedCurveTabBar
-                {...props}
-                reactNaviagtionBar={true}
-                height={200}
-                iconsArray={[...Array(ARRAY_LENGTH)].map((item, index) =>
-                  (<View style={styles.icon}>
-                    <Text>{index + 1}</Text>
-                  </View>)
-                )}
-              allowDropAnime={true}
-              />}
-          >
-            <Tab.Screen name={"1"} component={Screens[0]} />
-            <Tab.Screen name={"2"} component={Screens[1]} />
-            <Tab.Screen name={"3"} component={Screens[2]} />
-            <Tab.Screen name={"4"} component={Screens[3]} />
-            <Tab.Screen name={"5"} component={Screens[4]} />
-            <Tab.Screen name={"6"} component={Screens[5]} />
-            <Tab.Screen name={"7"} component={Screens[6]} />
-          </Tab.Navigator>
-        </NavigationContainer>
-      )
-    } else {
-      return (
-        <View style={styles.con}>
-          <ReanimatedCurveTabBar
-
-            // Nav bar height  
-            // ** Required
-            height={200}
-
-            // Array of components (icons) []
-            // ** Required
-            iconsArray={[...Array(ARRAY_LENGTH)].map((item, index) =>
-              (<View style={styles.icon}>
-                <Text>{index + 1}</Text>
-              </View>)
-            )}
-
-            Array of components
-            screensArray={[...Array(ARRAY_LENGTH)].map((item, index) =>
-              (<View style={{ width, height, backgroundColor: 'eee', alignItems: 'center', justifyContent: 'center' }}>
-                <Text>{index + 1}</Text>
-              </View>)
-            )}
-
-            screensBackground={'#eee'}
-
-            // Return icon number
-            // ** Required
-            onPress={(btnNum) => console.log(btnNum)}
-
-            // Top Gap height 
-            // (default 15) 
-            topGap={15}
-
-            tabColor={'tomato'}
-            backgroundColor={'slateblue'}
-
-            // Animation duration
-            // (default 300) 
-            duration={500}
-
-
-            // multipling the default sides radius 0.1 - 1
-            // (default 1)
-            sidesRadius={1}
-
-            // Icons marginBottom (distance from ground). 
-            // recommended values depends on component height
-            // (default 23)
-            marginBottom={23}
-
-            // Glich animation in the bottom of picked icon. 
-            // Recommended values: 0.7 - 1.4 
-            // (default 1.4)
-            scaleYCircle={1.4}
-
-            // Icon translateY. - => top ; + => bottom
-            // (default -10)
-            iconTranslateY={-5}
-            lockTranslateYAnime={true}
-
-            // icon scale animation
-            // (default 1.4)
-            iconScale={1.4}
-            lockScaleAnime={true}
-
-            // icons drop down animation
-            // (default 30)
-            iconDropY={30}
-            allowDropAnime={true}
-            // first icon will also drop down
-            dropWithFirst={false}
-
+    const data = Object.keys(SCREENS).map(key => ({ key }));
+    return (
+      <FlatList
+        style={styles.list}
+        data={data}
+        ItemSeparatorComponent={ItemSeparator}
+        renderItem={props => (
+          <MainScreenItem
+            {...props}
+            onPressItem={({ key }) => this.props.navigation.navigate(key)}
           />
-        </View>
-      )
-    }
-
+        )}
+        renderScrollComponent={props => <ScrollView {...props} />}
+      />
+    );
   }
 }
 
+const ItemSeparator = () => <View style={styles.separator} />;
 
+class MainScreenItem extends React.Component {
+  _onPress = () => this.props.onPressItem(this.props.item);
+  render() {
+    const { key } = this.props.item;
+    return (
+      <RectButton style={styles.button} onPress={this._onPress}>
+        <Text style={styles.buttonText}>{SCREENS[key].title || key}</Text>
+      </RectButton>
+    );
+  }
+}
+
+function ExampleApp() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator headerMode={'none'}>
+        <Stack.Screen name="MainScreen" component={MainScreen} />
+        <Stack.Screen name="BottomTabScreen" component={BottomTabScreen} />
+        <Stack.Screen name="WithScreensScreen" component={WithScreensScreen} />
+        <Stack.Screen name="OneModeScreen" component={OneModeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 
 const styles = StyleSheet.create({
-  con: {
-    flex: 1,
-    width: width,
-    height: height,
-    backgroundColor: 'black'
+  list: {
+    backgroundColor: '#EFEFF4',
   },
-  icon: {
+  separator: {
+    height: 1,
+    backgroundColor: '#DBDBE0',
+  },
+  buttonText: {
+    backgroundColor: 'transparent',
+  },
+  button: {
+    flex: 1,
+    height: 60,
+    padding: 10,
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#eee',
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-  }
-})
+    backgroundColor: '#fff',
+  },
+});
+
+export default ExampleApp;

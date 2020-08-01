@@ -7,8 +7,9 @@ Built with [react-native-gesture-handler](https://github.com/kmagiera/react-nati
 
 Fully native 60 FPS animations.
 
-![](gifs/five.gif)  |
-:---------------:|
+![](gifs/1.gif)  |![](gifs/2.gif)  |![](gifs/3.gif)  |
+:---------------:|:---------------:|:---------------:|
+
 
 ## Getting started
 
