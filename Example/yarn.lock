@@ -5655,9 +5655,9 @@ realpath-native@^2.0.0:
   resolved "https://registry.yarnpkg.com/realpath-native/-/realpath-native-2.0.0.tgz#7377ac429b6e1fd599dc38d08ed942d0d7beb866"
   integrity sha512-v1SEYUOXXdbBZK8ZuNgO4TBjamPsiSgcFr0aP+tEKpQZK8vooEUqV6nm6Cv502mX4NF2EfsnVqtNAHG+/6Ur1Q==
 
-reanimated-curved-tabs-bar@^1.0.8:
+react-native-curved-bottom-tabbar@^1.0.8:
   version "1.0.8"
-  resolved "https://registry.yarnpkg.com/reanimated-curved-tabs-bar/-/reanimated-curved-tabs-bar-1.0.8.tgz#0f784195072c77c466eaacdeb3d4c1626ba494ba"
+  resolved "https://registry.yarnpkg.com/react-native-curved-bottom-tabbar/-/react-native-curved-bottom-tabbar-1.0.8.tgz#0f784195072c77c466eaacdeb3d4c1626ba494ba"
   integrity sha512-Epbm9Ho5TBM91Gqk+FwbRz5ctDtKVSfG7rahSKMBLEI39/I4gr1UZtay+dKC6p7FTpGt5pxbrcBRwbzt4y6JcA==
 
 regenerate-unicode-properties@^8.2.0:

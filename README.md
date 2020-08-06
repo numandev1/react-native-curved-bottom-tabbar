@@ -13,17 +13,17 @@ Fully native 60 FPS animations.
 
 ## Getting started
 
-`$ npm install reanimated-curved-tabs-bar --save`
+`$ npm install react-native-curved-bottom-tabbar --save`
 
 or
 
-`$ yarn add reanimated-curved-tabs-bar`
+`$ yarn add react-native-curved-bottom-tabbar`
 
 Requierd Dependencies: [react-native-gesture-handler](https://kmagiera.github.io/react-native-gesture-handler/docs/getting-started.html) and [react-native-reanimated](https://github.com/kmagiera/react-native-reanimated).
 
 ## Basic Usage
 ```javascript
-import ReanimatedCurvedTabBar from 'reanimated-curved-tabs-bar';
+import ReanimatedCurvedTabBar from 'react-native-curved-bottom-tabbar';
 
 // TODO: 
       <View style={styles.con}>

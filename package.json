@@ -1,7 +1,7 @@
 {
-  "name": "reanimated-curved-tabs-bar",
+  "name": "react-native-curved-bottom-tabbar",
   "title": "React Native Reanimated Curve Tab Bar",
-  "version": "1.1.0",
+  "version": "0.0.2",
   "description": "React Native Reanimated Curve Tab Bar",
   "main": "index.js",
   "files": [
@@ -9,12 +9,12 @@
     "android",
     "index.js",
     "ios",
-    "react-native-reanimated-curve-tab-bar.podspec"
+    "react-native-curved-bottom-tabbar.podspec"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "git+https://github.com/reuvenaor/react-native-reanimated-curve-tab-bar.git",
+  "repository": "git+https://github.com/nomi9995/react-native-curved-bottom-tabbar.git",
   "keywords": [
     "react-native",
     "curved-tab-bar",
@@ -23,7 +23,7 @@
     "react-native-reanimated",
     "react-native-gesture-handler"
   ],
-  "author": "Reuven Naor <reuvenaor85@gmail.com>",
+  "author": "Muhammad Numan <muhammadnuman70@gmail.com>",
   "license": "MIT",
   "readmeFilename": "README.md",
   "peerDependencies": {

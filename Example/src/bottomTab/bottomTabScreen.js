@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, Dimensions, StatusBar } from 'react-native'
-import ReanimatedCurveTabBar from 'reanimated-curved-tabs-bar';
+import ReanimatedCurveTabBar from 'react-native-curved-bottom-tabbar';
 const { height, width } = Dimensions.get('window');
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
