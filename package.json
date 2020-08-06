@@ -1,7 +1,7 @@
 {
   "name": "react-native-curved-bottom-tabbar",
   "title": "React Native Reanimated Curve Tab Bar",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React Native Reanimated Curve Tab Bar",
   "main": "index.js",
   "files": [
@@ -16,6 +16,10 @@
   },
   "repository": "git+https://github.com/nomi9995/react-native-curved-bottom-tabbar.git",
   "keywords": [
+    "tabbar",
+    "curved",
+    "bottom",
+    "navigation",
     "react-native",
     "curved-tab-bar",
     "curve-tabs-bar",
