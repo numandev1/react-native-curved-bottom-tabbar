@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { StyleSheet, View, Dimensions, I18nManager } from 'react-native';
 I18nManager.allowRTL(false);
-import Animated, { Easing, useCode, greaterThan, lessOrEq, } from 'react-native-reanimated';
+import Animated, { EasingNode, useCode, greaterThan, lessOrEq, } from 'react-native-reanimated';
 import { TapGestureHandler, State } from 'react-native-gesture-handler';
 
 const {
-  interpolate,
+  interpolateNode,
   set,
   cond,
   startClock,
@@ -39,7 +39,7 @@ function runTiming(clock, value, dest, animeDuration) {
   const config = {
     duration: animeDuration,
     toValue: new Value(0),
-    easing: Easing.inOut(Easing.ease),
+    easing: EasingNode.inOut(EasingNode.ease),
   };
 
   return block([
@@ -169,68 +169,68 @@ const CurvedTabBar = (props) => {
   const timingX = useRef(runTiming(new Clock(0), State.BEGAN, State.END, animeDuration)).current;
 
 
-  const translateX = interpolate(timingX, {
+  const translateX = interpolateNode(timingX, {
     inputRange: [State.BEGAN, State.END],
     outputRange: [startRange, endRange]
   });
 
   const scale = LSA ?
-    interpolate(timingX, {
+    interpolateNode(timingX, {
       inputRange: [State.BEGAN, State.END],
       outputRange: [1, iconScale]
     }) :
-    interpolate(timingX, {
+    interpolateNode(timingX, {
       inputRange: [State.BEGAN, State.ACTIVE, State.END],
       outputRange: [1, iconScale, 1]
     });
 
-  const scaleYCircle = interpolate(timingX, {
+  const scaleYCircle = interpolateNode(timingX, {
     inputRange: [State.BEGAN, State.ACTIVE, State.END],
     outputRange: [1, scaleYIcon, 1]
   });
 
-  const iconSize = interpolate(timingX, {
+  const iconSize = interpolateNode(timingX, {
     inputRange: [State.BEGAN, State.END],
     outputRange: [0, btnWidth / 2]
   });
 
-  const iconOpacity = interpolate(timingX, {
+  const iconOpacity = interpolateNode(timingX, {
     inputRange: [State.BEGAN, State.END],
     outputRange: [0, 1]
   });
 
-  const iconOpacityOut = interpolate(timingX, {
+  const iconOpacityOut = interpolateNode(timingX, {
     inputRange: [State.BEGAN, State.END],
     outputRange: [1, 0]
   });
 
-  const iconOpacityIn = interpolate(timingX, {
+  const iconOpacityIn = interpolateNode(timingX, {
     inputRange: [State.BEGAN, State.ACTIVE, State.END],
     outputRange: [1, 0, 1]
   });
 
-  const translateYIn = interpolate(timingX, {
+  const translateYIn = interpolateNode(timingX, {
     inputRange: [State.BEGAN, State.ACTIVE, State.END],
     outputRange: [0, iconDropY, 0]
   })
 
 
   const translateY = LTA ?
-    interpolate(timingX, {
+    interpolateNode(timingX, {
       inputRange: [State.BEGAN, State.END],
       outputRange: [1, iconTranslateY]
     }) :
-    interpolate(timingX, {
+    interpolateNode(timingX, {
       inputRange: [State.BEGAN, State.ACTIVE, State.END],
       outputRange: [1, iconTranslateY, 1]
     });
 
-  const heightAnime = interpolate(timingX, {
+  const heightAnime = interpolateNode(timingX, {
     inputRange: [State.BEGAN, State.END],
     outputRange: [0, height - blockHeight]
   })
 
-  const heightAnimeOut = interpolate(timingX, {
+  const heightAnimeOut = interpolateNode(timingX, {
     inputRange: [State.BEGAN, State.END],
     outputRange: [height, 0]
   })
